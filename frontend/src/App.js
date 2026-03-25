@@ -186,10 +186,10 @@ function App() {
             <div>
               <h4 className="font-bold text-lg mb-3 text-orange-400">Quick Links</h4>
               <ul className="text-gray-400 space-y-2 text-sm">
-                <li><a href="#" className="hover:text-orange-400 transition">About Us</a></li>
-                <li><a href="#" className="hover:text-orange-400 transition">Contact</a></li>
-                <li><a href="#" className="hover:text-orange-400 transition">Shipping Info</a></li>
-                <li><a href="#" className="hover:text-orange-400 transition">Privacy Policy</a></li>
+                <li><a href="/" className="hover:text-orange-400 transition">About Us</a></li>
+                <li><a href="/" className="hover:text-orange-400 transition">Contact</a></li>
+                <li><a href="/" className="hover:text-orange-400 transition">Shipping Info</a></li>
+                <li><a href="/" className="hover:text-orange-400 transition">Privacy Policy</a></li>
               </ul>
             </div>
             <div>
