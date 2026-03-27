@@ -8,12 +8,12 @@ function App() {
   const [showLogin, setShowLogin] = useState(false);
 
   const products = [
-    { id: 1, name: 'Valencia Oranges', price: 8.99, description: 'Sweet and juicy Valencia oranges - Perfect for juice', image: '🍊' },
-    { id: 2, name: 'Navel Oranges', price: 9.99, description: 'Perfect for eating fresh with zero seeds', image: '🍊' },
-    { id: 3, name: 'Blood Oranges', price: 10.99, description: 'Rich, tart flavor with deep red color', image: '🍊' },
-    { id: 4, name: 'Organic Mixed Box', price: 24.99, description: 'Assorted certified organic oranges', image: '🍊' },
-    { id: 5, name: 'Mandarin Oranges', price: 7.99, description: 'Easy to peel, perfect for kids', image: '🍊' },
-    { id: 6, name: 'Premium Gift Box', price: 34.99, description: 'Beautiful presentation-ready box', image: '🍊' },
+    { id: 1, name: 'Valencia Oranges', price: 8.99, description: 'Sweet and juicy Valencia oranges - Perfect for juice', image: 'https://upload.wikimedia.org/wikipedia/commons/5/5a/Oranges_and_orange_juice.jpg' },
+    { id: 2, name: 'Navel Oranges', price: 9.99, description: 'Perfect for eating fresh with zero seeds', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Navel_Orange_and_Pera_Orange.JPG/400px-Navel_Orange_and_Pera_Orange.JPG' },
+    { id: 3, name: 'Blood Oranges', price: 10.99, description: 'Rich, tart flavor with deep red color', image: 'https://upload.wikimedia.org/wikipedia/commons/3/33/Cross_sections_of_blood_oranges.jpg' },
+    { id: 4, name: 'Organic Mixed Box', price: 24.99, description: 'Assorted certified organic oranges', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Oranges_Market_1.JPG/400px-Oranges_Market_1.JPG' },
+    { id: 5, name: 'Mandarin Oranges', price: 7.99, description: 'Easy to peel, perfect for kids', image: 'https://upload.wikimedia.org/wikipedia/commons/3/39/Want_a_tangerine%3F.jpg' },
+    { id: 6, name: 'Premium Gift Box', price: 34.99, description: 'Beautiful presentation-ready box', image: 'https://upload.wikimedia.org/wikipedia/commons/d/d6/HK_Fruit_7_Oranges_July-2012.JPG' },
   ];
 
   const addToCart = (product) => {
@@ -107,7 +107,7 @@ function App() {
                   key={product.id}
                   className="bg-white rounded-lg shadow-lg hover:shadow-xl transition transform hover:-translate-y-1 p-6 border-2 border-orange-100"
                 >
-                  <div className="text-6xl mb-4 text-center">{product.image}</div>
+                  <img src={product.image} alt={product.name} className="w-full h-48 object-cover rounded-lg mb-4" />
                   <h3 className="text-xl font-bold text-gray-800 mb-2">{product.name}</h3>
                   <p className="text-gray-600 mb-4 text-sm">{product.description}</p>
                   <div className="flex justify-between items-center">
