@@ -288,12 +288,24 @@ export default function App() {
             <h2 className="text-3xl font-extrabold mb-2">Have a question?</h2>
             <p className="text-orange-100">Reach out to us and we'll get back to you shortly.</p>
           </div>
-          <div className="flex gap-4 flex-wrap">
+          <div className="flex gap-4 flex-wrap items-center">
             <a href="mailto:info@orangeordering.com" className="bg-white text-orange-500 font-bold px-6 py-3 rounded-lg hover:bg-orange-50 transition">
               Email Us
             </a>
             <a href="tel:+6612345678" className="bg-orange-600 text-white font-bold px-6 py-3 rounded-lg hover:bg-orange-700 transition border border-orange-300">
               Call Us
+            </a>
+            {/* Line */}
+            <a href="#" className="bg-[#06C755] text-white w-12 h-12 rounded-lg flex items-center justify-center hover:opacity-90 transition" title="Line">
+              <svg viewBox="0 0 48 48" fill="white" className="w-7 h-7">
+                <path d="M24 4C12.95 4 4 11.82 4 21.5c0 6.04 3.74 11.36 9.38 14.6-.4 1.48-1.46 5.36-1.67 6.2-.27 1.06.39 1.05 .82.76.34-.22 5.39-3.66 7.57-5.14.62.09 1.26.14 1.9.14 11.05 0 20-7.82 20-17.5S35.05 4 24 4zM16.5 25.5h-4a1 1 0 0 1-1-1v-8a1 1 0 0 1 2 0v7h3a1 1 0 0 1 0 2zm4.5 0a1 1 0 0 1-2 0v-8a1 1 0 0 1 2 0v8zm8.5 0a1 1 0 0 1-.67-.26l-4.5-4v3.26a1 1 0 0 1-2 0v-8a1 1 0 0 1 1.67-.74l4.5 4V16.5a1 1 0 0 1 2 0v8a1 1 0 0 1-1 1zm5.5 0h-4a1 1 0 0 1 0-2h1.5v-2H31a1 1 0 0 1 0-2h1.5v-2H31a1 1 0 0 1 0-2h4a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1z"/>
+              </svg>
+            </a>
+            {/* Facebook */}
+            <a href="#" className="bg-[#1877F2] text-white w-12 h-12 rounded-lg flex items-center justify-center hover:opacity-90 transition" title="Facebook">
+              <svg viewBox="0 0 24 24" fill="white" className="w-6 h-6">
+                <path d="M24 12.073C24 5.404 18.629 0 12 0S0 5.404 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
+              </svg>
             </a>
           </div>
         </div>
