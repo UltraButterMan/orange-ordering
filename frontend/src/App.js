@@ -10,14 +10,34 @@ const orangeTypes = [
   {
     id: 1,
     name: 'Sai Nam Phueng',
-    description: 'Sweet honey-like flavor, perfect for eating fresh',
+    description: 'Sweet honey-like flavor, perfect for eating fresh. Sourced from the highlands of Chiang Mai.',
     image: 'https://upload.wikimedia.org/wikipedia/commons/5/5a/Oranges_and_orange_juice.jpg',
+    badge: '01',
   },
   {
     id: 2,
     name: 'Ocean',
-    description: 'Refreshing and juicy, great for juice',
+    description: 'Refreshing and juicy with a crisp finish. Ideal for fresh juice and gift boxes.',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Navel_Orange_and_Pera_Orange.JPG/400px-Navel_Orange_and_Pera_Orange.JPG',
+    badge: '02',
+  },
+];
+
+const features = [
+  {
+    icon: '🌿',
+    title: 'Farm Fresh',
+    desc: 'Handpicked directly from our orchards in Chiang Mai and delivered to your door.',
+  },
+  {
+    icon: '📦',
+    title: 'Flexible Boxes',
+    desc: 'Choose 30 or 40 fruits per box in small or big sizes to suit your needs.',
+  },
+  {
+    icon: '💌',
+    title: 'Personal Touch',
+    desc: 'Add a custom message to make every delivery extra special.',
   },
 ];
 
@@ -28,239 +48,299 @@ function ProductCard({ product, onAddToCart }) {
   const price = PRICES[boxSize][fruitSize];
 
   return (
-    <div className="bg-white rounded-lg shadow-lg hover:shadow-xl transition transform hover:-translate-y-1 p-6 border-2 border-orange-100">
-      <img src={product.image} alt={product.name} className="w-full h-48 object-cover rounded-lg mb-4" />
-      <h3 className="text-xl font-bold text-gray-800 mb-2">{product.name}</h3>
-      <p className="text-gray-600 mb-4 text-sm">{product.description}</p>
-
-      <div className="mb-3">
-        <p className="text-sm font-semibold text-gray-700 mb-1">Box Size</p>
-        <div className="flex gap-2">
-          {[30, 40].map(size => (
-            <button
-              key={size}
-              onClick={() => setBoxSize(size)}
-              className={`flex-1 py-1 rounded-lg text-sm font-semibold border-2 transition ${
-                boxSize === size
-                  ? 'bg-orange-600 text-white border-orange-600'
-                  : 'bg-white text-orange-600 border-orange-300 hover:border-orange-600'
-              }`}
-            >
-              {size} fruits
-            </button>
-          ))}
-        </div>
+    <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100">
+      <div className="relative">
+        <img src={product.image} alt={product.name} className="w-full h-56 object-cover" />
+        <span className="absolute top-4 left-4 bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full tracking-widest">
+          {product.badge}
+        </span>
       </div>
+      <div className="p-6">
+        <h3 className="text-2xl font-bold text-gray-900 mb-2">{product.name}</h3>
+        <p className="text-gray-500 text-sm mb-5 leading-relaxed">{product.description}</p>
 
-      <div className="mb-4">
-        <p className="text-sm font-semibold text-gray-700 mb-1">Fruit Size</p>
-        <div className="flex gap-2">
-          {['Small', 'Big'].map(size => (
-            <button
-              key={size}
-              onClick={() => setFruitSize(size)}
-              className={`flex-1 py-1 rounded-lg text-sm font-semibold border-2 transition ${
-                fruitSize === size
-                  ? 'bg-orange-600 text-white border-orange-600'
-                  : 'bg-white text-orange-600 border-orange-300 hover:border-orange-600'
-              }`}
-            >
-              {size}
-            </button>
-          ))}
+        <div className="mb-4">
+          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Box Size</p>
+          <div className="flex gap-2">
+            {[30, 40].map(size => (
+              <button
+                key={size}
+                onClick={() => setBoxSize(size)}
+                className={`flex-1 py-2 rounded-lg text-sm font-semibold border-2 transition-all ${
+                  boxSize === size
+                    ? 'bg-orange-500 text-white border-orange-500'
+                    : 'bg-white text-gray-600 border-gray-200 hover:border-orange-400'
+                }`}
+              >
+                {size} fruits
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
 
-      <div className="flex justify-between items-center">
-        <span className="text-2xl font-bold text-orange-600">${price.toFixed(2)}</span>
-        <button
-          onClick={() => onAddToCart({ ...product, boxSize, fruitSize, price })}
-          className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg font-semibold transition transform hover:scale-105"
-        >
-          Add
-        </button>
+        <div className="mb-6">
+          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Fruit Size</p>
+          <div className="flex gap-2">
+            {['Small', 'Big'].map(size => (
+              <button
+                key={size}
+                onClick={() => setFruitSize(size)}
+                className={`flex-1 py-2 rounded-lg text-sm font-semibold border-2 transition-all ${
+                  fruitSize === size
+                    ? 'bg-orange-500 text-white border-orange-500'
+                    : 'bg-white text-gray-600 border-gray-200 hover:border-orange-400'
+                }`}
+              >
+                {size}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex justify-between items-center">
+          <span className="text-3xl font-bold text-orange-500">${price.toFixed(2)}</span>
+          <button
+            onClick={() => onAddToCart({ ...product, boxSize, fruitSize, price })}
+            className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg font-semibold transition-all"
+          >
+            Add to Cart
+          </button>
+        </div>
       </div>
     </div>
   );
 }
 
-function App() {
+function CartPanel({ cart, onRemove, onClear, deliveryMessage, onMessageChange, onClose }) {
+  const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
+  return (
+    <div className="fixed inset-0 z-50 flex justify-end">
+      <div className="absolute inset-0 bg-black bg-opacity-40" onClick={onClose} />
+      <div className="relative bg-white w-full max-w-md h-full flex flex-col shadow-2xl">
+        <div className="flex justify-between items-center px-6 py-5 border-b border-gray-100">
+          <h3 className="text-xl font-bold text-gray-900">Your Cart ({cart.length})</h3>
+          <button onClick={onClose} className="text-gray-400 hover:text-gray-600 text-2xl leading-none">&times;</button>
+        </div>
+
+        {cart.length === 0 ? (
+          <div className="flex-1 flex items-center justify-center">
+            <p className="text-gray-400 text-center">Your cart is empty</p>
+          </div>
+        ) : (
+          <>
+            <div className="flex-1 overflow-y-auto px-6 py-4 space-y-3">
+              {cart.map((item, index) => (
+                <div key={index} className="flex justify-between items-center bg-orange-50 p-4 rounded-xl border border-orange-100">
+                  <div>
+                    <p className="font-semibold text-gray-800">{item.name}</p>
+                    <p className="text-gray-400 text-xs mt-1">{item.boxSize} fruits · {item.fruitSize}</p>
+                    <p className="text-orange-500 font-bold mt-1">${item.price.toFixed(2)}</p>
+                  </div>
+                  <button
+                    onClick={() => onRemove(index)}
+                    className="text-gray-300 hover:text-red-400 transition text-2xl leading-none"
+                  >
+                    &times;
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            <div className="px-6 py-4 border-t border-gray-100">
+              <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Delivery Message (optional)</label>
+              <textarea
+                value={deliveryMessage}
+                onChange={(e) => onMessageChange(e.target.value)}
+                placeholder="Add a note for your delivery..."
+                rows={3}
+                className="w-full px-4 py-3 border-2 border-gray-100 rounded-xl text-sm text-gray-700 focus:outline-none focus:border-orange-300 resize-none"
+              />
+            </div>
+
+            <div className="px-6 py-4 border-t border-gray-100">
+              <div className="flex justify-between items-center mb-4">
+                <span className="text-gray-500">Total</span>
+                <span className="text-2xl font-bold text-orange-500">${totalPrice.toFixed(2)}</span>
+              </div>
+              <button className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-xl font-bold text-base transition-all mb-2">
+                Proceed to Checkout
+              </button>
+              <button onClick={onClear} className="w-full bg-gray-100 hover:bg-gray-200 text-gray-600 py-2 rounded-xl font-semibold text-sm transition-all">
+                Clear Cart
+              </button>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default function App() {
   const [cart, setCart] = useState([]);
-  const [currentUser, setCurrentUser] = useState(null);
-  const [showLogin, setShowLogin] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
   const [deliveryMessage, setDeliveryMessage] = useState('');
 
   const addToCart = (product) => {
     setCart([...cart, product]);
+    setCartOpen(true);
   };
 
   const removeFromCart = (index) => {
     setCart(cart.filter((_, i) => i !== index));
   };
 
-  const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
-
-  const handleLogin = (name) => {
-    setCurrentUser(name);
-    setShowLogin(false);
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-b from-orange-50 to-white">
+    <div className="min-h-screen bg-white font-sans">
       {/* Header */}
-      <header className="bg-gradient-to-r from-orange-600 to-orange-500 text-white shadow-lg sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto px-4 py-6 flex justify-between items-center">
-          <div className="flex items-center space-x-2">
-            <span className="text-3xl">🍊</span>
-            <h1 className="text-3xl font-bold">Orange Ordering</h1>
+      <header className="sticky top-0 z-40 bg-white border-b border-gray-100 shadow-sm">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+          <div className="flex items-center gap-2">
+            <span className="text-2xl">🍊</span>
+            <span className="text-xl font-bold text-gray-900">Orange Ordering</span>
           </div>
-          <div className="flex items-center space-x-4">
-            {currentUser ? (
-              <div className="flex items-center space-x-3">
-                <span className="text-white">👤 {currentUser}</span>
-                <button
-                  onClick={() => setCurrentUser(null)}
-                  className="bg-white text-orange-600 px-3 py-1 rounded-lg font-semibold hover:bg-orange-100 transition"
-                >
-                  Logout
-                </button>
-              </div>
-            ) : (
-              <button
-                onClick={() => setShowLogin(!showLogin)}
-                className="bg-white text-orange-600 px-4 py-2 rounded-lg font-semibold hover:bg-orange-100 transition"
-              >
-                Login
-              </button>
+          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+            <a href="#home" className="hover:text-orange-500 transition">Home</a>
+            <a href="#products" className="hover:text-orange-500 transition">Products</a>
+            <a href="#about" className="hover:text-orange-500 transition">About</a>
+            <a href="#contact" className="hover:text-orange-500 transition">Contact</a>
+          </nav>
+          <button
+            onClick={() => setCartOpen(true)}
+            className="relative bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-semibold text-sm transition-all"
+          >
+            Cart
+            {cart.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-green-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                {cart.length}
+              </span>
             )}
-            <button
-              onClick={() => {}}
-              className="bg-yellow-300 text-orange-600 px-4 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition relative"
-            >
-              🛒 ({cart.length})
-            </button>
-          </div>
+          </button>
         </div>
-
-        {showLogin && !currentUser && (
-          <div className="bg-orange-700 px-4 py-4">
-            <div className="max-w-6xl mx-auto flex space-x-4">
-              <input type="email" placeholder="Email" className="px-3 py-2 rounded-lg text-gray-800 flex-1" />
-              <input type="password" placeholder="Password" className="px-3 py-2 rounded-lg text-gray-800 flex-1" />
-              <button
-                onClick={() => handleLogin('Guest')}
-                className="bg-yellow-300 text-orange-600 px-6 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition"
-              >
-                Sign In
-              </button>
-            </div>
-          </div>
-        )}
       </header>
 
-      <main className="max-w-6xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Products */}
-          <div className="lg:col-span-3">
-            <h2 className="text-4xl font-bold text-gray-800 mb-2">Fresh Oranges</h2>
-            <p className="text-gray-600 mb-8">Handpicked premium quality oranges delivered to your door</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {orangeTypes.map((product) => (
-                <ProductCard key={product.id} product={product} onAddToCart={addToCart} />
-              ))}
-            </div>
+      {/* Hero */}
+      <section id="home" className="relative bg-gradient-to-br from-orange-500 to-orange-400 text-white overflow-hidden">
+        <div className="absolute inset-0 opacity-10"
+          style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, white 1px, transparent 1px), radial-gradient(circle at 80% 80%, white 1px, transparent 1px)', backgroundSize: '60px 60px' }}
+        />
+        <div className="max-w-6xl mx-auto px-6 py-24 flex flex-col md:flex-row items-center gap-12">
+          <div className="flex-1">
+            <p className="text-orange-100 text-sm font-semibold uppercase tracking-widest mb-3">Fresh from Chiang Mai</p>
+            <h1 className="text-5xl font-extrabold leading-tight mb-6">
+              Premium Oranges<br />Delivered to<br />Your Door
+            </h1>
+            <p className="text-orange-100 text-lg mb-8 leading-relaxed max-w-md">
+              Handpicked fresh oranges from our orchards in Chiang Mai. Choose your variety, box size, and fruit size.
+            </p>
+            <a
+              href="#products"
+              className="inline-block bg-white text-orange-500 font-bold px-8 py-3 rounded-lg hover:bg-orange-50 transition-all"
+            >
+              Order Now
+            </a>
           </div>
-
-          {/* Cart Sidebar */}
-          <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg shadow-lg p-6 border-2 border-orange-200 sticky top-24">
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">🛒 Cart</h3>
-              {cart.length === 0 ? (
-                <p className="text-gray-600 text-center py-8">Your cart is empty</p>
-              ) : (
-                <>
-                  <div className="space-y-3 mb-4 max-h-64 overflow-y-auto">
-                    {cart.map((item, index) => (
-                      <div key={index} className="flex justify-between items-center bg-orange-50 p-3 rounded-lg border border-orange-200">
-                        <div>
-                          <p className="font-semibold text-gray-800 text-sm">{item.name}</p>
-                          <p className="text-gray-500 text-xs">{item.boxSize} fruits · {item.fruitSize}</p>
-                          <p className="text-orange-600 font-bold">${item.price.toFixed(2)}</p>
-                        </div>
-                        <button
-                          onClick={() => removeFromCart(index)}
-                          className="text-red-500 hover:text-red-700 font-bold text-xl w-6 h-6 flex items-center justify-center"
-                        >
-                          ✕
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="mb-4">
-                    <label className="block text-sm font-semibold text-gray-700 mb-1">Delivery Message (optional)</label>
-                    <textarea
-                      value={deliveryMessage}
-                      onChange={(e) => setDeliveryMessage(e.target.value)}
-                      placeholder="Add a message for your delivery..."
-                      className="w-full px-3 py-2 border-2 border-orange-200 rounded-lg text-sm text-gray-800 focus:outline-none focus:border-orange-400 resize-none"
-                      rows={3}
-                    />
-                  </div>
-
-                  <div className="border-t-2 border-orange-300 pt-4 mb-4">
-                    <div className="flex justify-between items-center">
-                      <span className="text-lg font-semibold text-gray-800">Total:</span>
-                      <span className="text-2xl font-bold text-orange-600">${totalPrice.toFixed(2)}</span>
-                    </div>
-                  </div>
-
-                  <button className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white py-3 rounded-lg font-bold text-lg transition transform hover:scale-105">
-                    Proceed to Checkout
-                  </button>
-                  <button
-                    onClick={() => setCart([])}
-                    className="w-full mt-2 bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 rounded-lg font-semibold transition"
-                  >
-                    Clear Cart
-                  </button>
-                </>
-              )}
-            </div>
+          <div className="flex-1 flex justify-center">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Oranges_and_orange_juice.jpg"
+              alt="Fresh Oranges"
+              className="w-80 h-80 object-cover rounded-full shadow-2xl border-4 border-white border-opacity-30"
+            />
           </div>
         </div>
-      </main>
+      </section>
 
-      <footer className="bg-gray-900 text-white mt-16">
-        <div className="max-w-6xl mx-auto px-4 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            <div>
-              <h4 className="font-bold text-lg mb-3 text-orange-400">🍊 Orange Ordering</h4>
-              <p className="text-gray-400 text-sm leading-relaxed">Premium fresh oranges delivered straight to your door. Supporting local farmers and sustainable agriculture.</p>
-            </div>
-            <div>
-              <h4 className="font-bold text-lg mb-3 text-orange-400">Quick Links</h4>
-              <ul className="text-gray-400 space-y-2 text-sm">
-                <li><a href="/" className="hover:text-orange-400 transition">About Us</a></li>
-                <li><a href="/" className="hover:text-orange-400 transition">Contact</a></li>
-                <li><a href="/" className="hover:text-orange-400 transition">Shipping Info</a></li>
-                <li><a href="/" className="hover:text-orange-400 transition">Privacy Policy</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold text-lg mb-3 text-orange-400">Contact</h4>
-              <p className="text-gray-400 text-sm mb-2">📧 info@orangeordering.com</p>
-              <p className="text-gray-400 text-sm mb-2">📞 (555) 123-4567</p>
-              <p className="text-gray-400 text-sm">🕐 Mon-Fri: 9AM-6PM EST</p>
-            </div>
+      {/* Features */}
+      <section id="about" className="bg-gray-50 py-16">
+        <div className="max-w-6xl mx-auto px-6">
+          <p className="text-center text-orange-500 text-sm font-bold uppercase tracking-widest mb-3">Why Choose Us</p>
+          <h2 className="text-3xl font-extrabold text-center text-gray-900 mb-12">The Orange Ordering Difference</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {features.map((f, i) => (
+              <div key={i} className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 text-center">
+                <div className="text-4xl mb-4">{f.icon}</div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">{f.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{f.desc}</p>
+              </div>
+            ))}
           </div>
-          <div className="border-t border-gray-700 pt-8">
-            <p className="text-center text-gray-400 text-sm">&copy; 2026 Orange Ordering. All rights reserved. | Made with ❤️ for your orange business</p>
+        </div>
+      </section>
+
+      {/* Products */}
+      <section id="products" className="py-20">
+        <div className="max-w-6xl mx-auto px-6">
+          <p className="text-orange-500 text-sm font-bold uppercase tracking-widest mb-3">Our Selection</p>
+          <h2 className="text-3xl font-extrabold text-gray-900 mb-3">Choose Your Orange</h2>
+          <p className="text-gray-500 mb-12 max-w-lg">Select your preferred variety, box size, and fruit size. Add a personal message and we'll include it with your delivery.</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {orangeTypes.map((product) => (
+              <ProductCard key={product.id} product={product} onAddToCart={addToCart} />
+            ))}
           </div>
+        </div>
+      </section>
+
+      {/* Contact CTA */}
+      <section id="contact" className="bg-orange-500 text-white py-16">
+        <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div>
+            <h2 className="text-3xl font-extrabold mb-2">Have a question?</h2>
+            <p className="text-orange-100">Reach out to us and we'll get back to you shortly.</p>
+          </div>
+          <div className="flex gap-4 flex-wrap">
+            <a href="mailto:info@orangeordering.com" className="bg-white text-orange-500 font-bold px-6 py-3 rounded-lg hover:bg-orange-50 transition">
+              Email Us
+            </a>
+            <a href="tel:+6612345678" className="bg-orange-600 text-white font-bold px-6 py-3 rounded-lg hover:bg-orange-700 transition border border-orange-300">
+              Call Us
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-12">
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-2xl">🍊</span>
+              <span className="font-bold text-lg">Orange Ordering</span>
+            </div>
+            <p className="text-gray-400 text-sm leading-relaxed">Premium fresh oranges from Chiang Mai, delivered straight to your door.</p>
+          </div>
+          <div>
+            <h4 className="font-bold text-orange-400 mb-3">Quick Links</h4>
+            <ul className="text-gray-400 space-y-2 text-sm">
+              <li><a href="#home" className="hover:text-orange-400 transition">Home</a></li>
+              <li><a href="#products" className="hover:text-orange-400 transition">Products</a></li>
+              <li><a href="#about" className="hover:text-orange-400 transition">About</a></li>
+              <li><a href="#contact" className="hover:text-orange-400 transition">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-bold text-orange-400 mb-3">Contact</h4>
+            <p className="text-gray-400 text-sm mb-2">info@orangeordering.com</p>
+            <p className="text-gray-400 text-sm mb-2">+66 12 345 678</p>
+            <p className="text-gray-400 text-sm">Chiang Mai, Thailand</p>
+          </div>
+        </div>
+        <div className="border-t border-gray-800 pt-8 max-w-6xl mx-auto px-6">
+          <p className="text-center text-gray-500 text-sm">&copy; 2026 Orange Ordering. All rights reserved.</p>
         </div>
       </footer>
+
+      {/* Cart Slide-out */}
+      {cartOpen && (
+        <CartPanel
+          cart={cart}
+          onRemove={removeFromCart}
+          onClear={() => setCart([])}
+          deliveryMessage={deliveryMessage}
+          onMessageChange={setDeliveryMessage}
+          onClose={() => setCartOpen(false)}
+        />
+      )}
     </div>
   );
 }
-
-export default App;
